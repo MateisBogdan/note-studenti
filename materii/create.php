@@ -8,34 +8,29 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 
 // include database and object files
 include_once '../cfg/database.php';
-include_once '../obiecte/student.php';
+include_once '../obiecte/materii.php';
  if(isset($_POST['Submit']))
  {
 	 $data=array(
 	 'Nume'=>$_POST['nume'],
-	 'Grupa'=>$_POST['Grupa'],
-	 'cnp'=>$_POST['CNP'],
-	 'Telefon'=>$_POST['telefon']
-	 );
+	 	 );
 	 $jason=json_encode($data);
 	echo $jason;
  }
 $database = new Database();
 $db = $database->getConnection();
 
-$student= new Student($db);
+$materie= new Materii($db);
 $data= json_decode($jason); 
-$student->nume=$data->Nume;
-$student->grupa=$data->Grupa;
-$student->cnp=$data->cnp;
-$student->telefon=$data->Telefon;
+$materie->nume=$data->Nume;
 
-if($student->create()){
-	echo '{'.'\"message\": "Student was created."'.'}';
+
+if($materie->create()){
+	echo '{'.'\"message\": "Materie was created."'.'}';
 }
 else{
     echo '{';
-        echo '"message": "Student creation failed."';
+        echo '"message": "Materie creation failed."';
     echo '}';
 }
 ?>

@@ -10,27 +10,27 @@ include_once '../obiecte/materii.php';
 $database = new Database();
 $db = $database->getConnection();
  
- $student = new Materii($db);
+ $materie = new Materii($db);
  
- $stmt= $student->read();
+ $stmt= $materie->read();
 $num=$stmt->rowCount();
 
  if($num>0){
-	 $students=array();
+	 $materii=array();
 	 
 	  while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
        
        //$row['name'] to
         // just $name only
         extract($row);
-		$student_item=array(
+		$materie_item=array(
 		"ID"=>$ID,
 		"Nume"=>$Nume
 	
 		);
-		array_push($students,$student_item);
+		array_push($materii,$materie_item);
 	  }
-	  echo json_encode($students);
+	  echo json_encode($materii);
  }
 	  else{
         
