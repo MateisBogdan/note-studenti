@@ -10,20 +10,19 @@ include_once '../obiecte/note.php';
 $database = new Database();
 $db = $database->getConnection();
  
- $student = new Note($db);
+ $nota = new Note($db);
  
- $stmt= $student->read();
+ $stmt= $nota->read();
 $num=$stmt->rowCount();
 
  if($num>0){
-	 $students=array();
+	 $note=array();
 	 
 	  while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
        
-       //$row['name'] to
-        // just $name only
+     
         extract($row);
-		$student_item=array(
+		$note_item=array(
 		"ID"=>$ID,
 		"materieID"=>$materieID,
 		"Nota"=>$Nota,
@@ -31,9 +30,9 @@ $num=$stmt->rowCount();
 		"NumeMaterie"=>$Nume,
 		"NumeStudent"=>$NumeStudent
 		);
-		array_push($students,$student_item);
+		array_push($note,$note_item);
 	  }
-	  echo json_encode($students);
+	  echo json_encode($note);
  }
 	  else{
         

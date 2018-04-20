@@ -9,19 +9,19 @@ header('Content-Type: application/json');
 include_once '../obiecte/note.php';
 $database = new Database();
 $db = $database->getConnection();
-$student = new Note($db);
+$nota = new Note($db);
 
-$student->id=isset($_GET['id'])? $_GET['id']: die();
+$nota->id=isset($_GET['id'])? $_GET['id']: die();
 
-$student->readOne();
+$nota->readOne();
 
 
-$student_data=array(
-"id"=>$student->id,
-"materieID"=>$student->materieID,
-"Nota"=>$student->nota,
-"studentID"=>$student->studentID,
+$note_data=array(
+"id"=>$nota->id,
+"materieID"=>$nota->materieID,
+"Nota"=>$nota->nota,
+"studentID"=>$nota->studentID,
 
 );
-print_r (json_encode($student_data));
+print_r (json_encode($note_data));
 ?>

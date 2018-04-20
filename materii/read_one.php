@@ -9,16 +9,16 @@ header('Content-Type: application/json');
 include_once '../obiecte/materii.php';
 $database = new Database();
 $db = $database->getConnection();
-$student = new Materii($db);
+$materie = new Materii($db);
 
-$student->id=isset($_GET['id'])? $_GET['id']: die();
+$materie->id=isset($_GET['id'])? $_GET['id']: die();
 
-$student->readOne();
+$materie->readOne();
 
 
-$student_data=array(
-"id"=>$student->id,
-"nume"=>$student->nume,
+$materie_data=array(
+"id"=>$materie->id,
+"nume"=>$materie->nume,
 );
-print_r (json_encode($student_data));
+print_r (json_encode($materie_data));
 ?>
